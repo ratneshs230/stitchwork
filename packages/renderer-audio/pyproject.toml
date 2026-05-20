@@ -1,0 +1,23 @@
+[project]
+name = "stitchwork-renderer-audio"
+version = "0.1.0"
+description = "Audiobook pipeline: SSML 1.1 emission → ElevenLabs Projects → Whisper round-trip QA."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+
+dependencies = [
+  "click>=8.1.7",
+]
+
+[project.optional-dependencies]
+elevenlabs = ["elevenlabs>=1.9.0"]
+whisper = ["openai-whisper>=20240930", "soundfile>=0.12.1"]
+dev = ["pytest>=8.3.0", "ruff>=0.6.0"]
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stitchwork_renderer_audio"]

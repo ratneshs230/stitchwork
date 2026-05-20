@@ -1,0 +1,67 @@
+{
+  "name": "@stitchwork/vscode-extension",
+  "displayName": "Stitchwork",
+  "description": "Authoring surface for Stitchwork — MyST + 8 publishing directives with live preview.",
+  "version": "0.1.0",
+  "publisher": "stitchwork",
+  "license": "Apache-2.0",
+  "engines": { "vscode": "^1.95.0" },
+  "categories": ["Programming Languages", "Other"],
+  "activationEvents": [
+    "onLanguage:stitchwork-myst",
+    "onCommand:stitchwork.preview",
+    "onCommand:stitchwork.outline"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "stitchwork-myst",
+        "aliases": ["Stitchwork MyST", "stitchwork"],
+        "extensions": [".swk.md", ".myst"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "stitchwork-myst",
+        "scopeName": "text.html.markdown.stitchwork",
+        "path": "./syntaxes/stitchwork-myst.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      { "command": "stitchwork.preview", "title": "Stitchwork: Open Live Preview" },
+      { "command": "stitchwork.outline", "title": "Stitchwork: Reveal Outline" },
+      { "command": "stitchwork.validate", "title": "Stitchwork: Validate Current Book" }
+    ],
+    "configuration": {
+      "title": "Stitchwork",
+      "properties": {
+        "stitchwork.cliPath": {
+          "type": "string",
+          "default": "stitchwork",
+          "description": "Path to the stitchwork CLI binary."
+        },
+        "stitchwork.previewPort": {
+          "type": "number",
+          "default": 7777
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "echo 'lint: vscode-extension ok'"
+  },
+  "dependencies": {
+    "@stitchwork/parser-ts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.95.0",
+    "@types/node": "^22.5.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

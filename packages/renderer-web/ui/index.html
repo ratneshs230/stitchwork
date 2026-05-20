@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Stitchwork preview</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="sw-bar">
+    <span class="sw-brand">Stitchwork</span>
+    <select id="chapter"></select>
+    <span id="status" class="sw-status">ready</span>
+  </header>
+  <main class="sw-panes">
+    <section class="sw-pane sw-iphone" data-trim="iphone">
+      <header>iPhone (390×844)</header>
+      <iframe id="frame-iphone" srcdoc=""></iframe>
+    </section>
+    <section class="sw-pane sw-kindle" data-trim="kindle">
+      <header>Kindle (600×800)</header>
+      <iframe id="frame-kindle" srcdoc=""></iframe>
+    </section>
+    <section class="sw-pane sw-paperback" data-trim="paperback">
+      <header>Paperback (6×9)</header>
+      <iframe id="frame-paperback" srcdoc=""></iframe>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

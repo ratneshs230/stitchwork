@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Stitchwork MyST",
+  "scopeName": "text.html.markdown.stitchwork",
+  "patterns": [
+    { "include": "#frontmatter" },
+    { "include": "#directive" },
+    { "include": "#inline-role" },
+    { "include": "text.html.markdown" }
+  ],
+  "repository": {
+    "frontmatter": {
+      "begin": "\\A---$",
+      "end": "^---$",
+      "name": "meta.frontmatter.stitchwork",
+      "patterns": [{ "match": "^[a-zA-Z][a-zA-Z0-9_-]*:", "name": "support.type.property-name.stitchwork" }]
+    },
+    "directive": {
+      "begin": "^:::\\{(ai-provenance|practitioner-quote|locale-variant|edition|workbook-prompt|visual-ref)\\}",
+      "end": "^:::\\s*$",
+      "name": "meta.directive.stitchwork",
+      "beginCaptures": {
+        "1": { "name": "support.function.directive.stitchwork" }
+      },
+      "patterns": [
+        { "match": "^:([a-z][a-z0-9_]*):", "name": "support.type.option.stitchwork" },
+        { "include": "#inline-role" },
+        { "include": "text.html.markdown" }
+      ]
+    },
+    "inline-role": {
+      "match": "\\{(regulatory-cite|audio-pronounce)\\}`([^`]*)`(?:\\[([^\\]]*)\\])?",
+      "captures": {
+        "1": { "name": "support.function.role.stitchwork" },
+        "2": { "name": "string.quoted.role-options.stitchwork" },
+        "3": { "name": "string.unquoted.role-text.stitchwork" }
+      }
+    }
+  }
+}

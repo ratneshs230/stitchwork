@@ -1,0 +1,14 @@
+[project]
+name = "stitchwork-renderer-web"
+version = "0.1.0"
+description = "Python shim that spawns the Node-based Stitchwork preview server."
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = ["click>=8.1.7"]
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stitchwork_renderer_web"]

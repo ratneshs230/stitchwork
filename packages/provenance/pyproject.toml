@@ -1,0 +1,19 @@
+[project]
+name = "stitchwork-provenance"
+version = "0.1.0"
+description = "C2PA + IPTC + JSON-LD provenance emission (EU AI Act Art. 50 / India IT Rules)."
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+dependencies = ["click>=8.1.7"]
+
+[project.optional-dependencies]
+c2pa = ["py-c2pa>=0.4.0; sys_platform != 'win32'"]
+iptc = ["Pillow>=10.4.0"]
+dev = ["pytest>=8.3.0", "ruff>=0.6.0"]
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stitchwork_provenance"]

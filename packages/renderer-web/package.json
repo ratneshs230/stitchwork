@@ -1,0 +1,32 @@
+{
+  "name": "@stitchwork/renderer-web",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/server.js",
+  "bin": {
+    "stitchwork-preview": "./dist/bin.js"
+  },
+  "files": ["dist", "ui"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "start": "node dist/bin.js",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "echo 'lint: renderer-web ok'"
+  },
+  "dependencies": {
+    "@stitchwork/parser-ts": "workspace:*",
+    "@stitchwork/shared-schemas": "workspace:*",
+    "chokidar": "^4.0.1",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "@types/ws": "^8.5.13",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

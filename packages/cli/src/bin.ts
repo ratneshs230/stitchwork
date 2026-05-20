@@ -24,12 +24,14 @@ program
   .option('-o, --out <dir>', 'Output root directory', 'dist')
   .option('--locale <code>', 'Locale to select for locale-variant directives')
   .option('--edition <ver>', 'Edition to gate edition directives (e.g. 2026.1)')
+  .option('--parallel', 'Run independent targets in parallel where safe', false)
   .action(async (book: string, opts) => {
     const code = await runBuild(book, {
       target: opts.target,
       outDir: opts.out,
       locale: opts.locale,
       edition: opts.edition,
+      parallel: !!opts.parallel,
     });
     process.exit(code);
   });
