@@ -1,0 +1,23 @@
+[project]
+name = "stitchwork-renderer-visual"
+version = "0.1.0"
+description = "Visual sub-pipeline: Mermaid + matplotlib + Playwright with content-hash cache."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+
+dependencies = [
+  "click>=8.1.7",
+]
+
+[project.optional-dependencies]
+matplotlib = ["matplotlib>=3.9.0"]
+playwright = ["playwright>=1.47.0", "Pillow>=10.4.0"]
+dev = ["pytest>=8.3.0", "ruff>=0.6.0"]
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stitchwork_renderer_visual"]
