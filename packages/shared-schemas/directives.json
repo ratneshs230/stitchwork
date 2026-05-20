@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stitchwork.dev/schemas/directives.json",
+  "title": "Stitchwork directive schemas",
+  "description": "Authoritative schemas for the 8 Stitchwork MyST directives. Unknown options MUST cause parse failure (no silent drop).",
+  "definitions": {
+    "humanEdits": {
+      "type": "string",
+      "enum": ["none", "light", "heavy", "rewrite"]
+    },
+    "locale": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}(-[A-Z]{2,3})?$"
+    },
+    "visualRole": {
+      "type": "string",
+      "enum": ["hero", "chart", "diagram", "infographic", "screenshot", "photo", "illustration"]
+    },
+    "workbookKind": {
+      "type": "string",
+      "enum": ["reflection", "fill", "checklist", "rating", "freeform"]
+    },
+    "editionVersion": {
+      "type": "string",
+      "pattern": "^\\d{4}\\.\\d+(\\.\\d+)?$"
+    }
+  },
+  "directives": {
+    "ai-provenance": {
+      "kind": "block",
+      "hasBody": false,
+      "options": {
+        "model": { "type": "string", "required": true },
+        "prompt_hash": { "type": "string", "required": true, "pattern": "^[a-f0-9]{6,64}$" },
+        "generated_at": { "type": "string", "required": true, "format": "date-time" },
+        "human_edits": { "$ref": "#/definitions/humanEdits", "required": true },
+        "editor": { "type": "string", "required": false }
+      }
+    },
+    "practitioner-quote": {
+      "kind": "block",
+      "hasBody": true,
+      "options": {
+        "source_name": { "type": "string", "required": true },
+        "role": { "type": "string", "required": true },
+        "jurisdiction": { "$ref": "#/definitions/locale", "required": true },
+        "consent_id": { "type": "string", "required": true },
+        "rev_share_bps": { "type": "integer", "minimum": 0, "maximum": 10000, "required": true }
+      }
+    },
+    "regulatory-cite": {
+      "kind": "role",
+      "options": {
+        "jurisdiction": { "$ref": "#/definitions/locale", "required": true },
+        "current_as_of": { "type": "string", "required": true, "pattern": "^\\d{4}-\\d{2}$" },
+        "source_url": { "type": "string", "required": true, "format": "uri" },
+        "statute": { "type": "string", "required": true }
+      }
+    },
+    "locale-variant": {
+      "kind": "block",
+      "hasBody": true,
+      "options": {
+        "locales": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/locale" },
+          "minItems": 1,
+          "required": true
+        },
+        "fallback": { "type": "boolean", "required": false, "default": false }
+      }
+    },
+    "edition": {
+      "kind": "block",
+      "hasBody": true,
+      "options": {
+        "since": { "$ref": "#/definitions/editionVersion", "required": false },
+        "until": { "$ref": "#/definitions/editionVersion", "required": false },
+        "range": { "type": "string", "required": false }
+      },
+      "constraints": ["at_least_one_of: since, until, range"]
+    },
+    "workbook-prompt": {
+      "kind": "block",
+      "hasBody": true,
+      "options": {
+        "id": { "type": "string", "required": true, "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "kind": { "$ref": "#/definitions/workbookKind", "required": true },
+        "lines": { "type": "integer", "minimum": 1, "maximum": 40, "required": false }
+      }
+    },
+    "visual-ref": {
+      "kind": "block",
+      "hasBody": false,
+      "options": {
+        "role": { "$ref": "#/definitions/visualRole", "required": true },
+        "id": { "type": "string", "required": true, "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "alt": { "type": "string", "required": true, "minLength": 4 },
+        "prompt": { "type": "string", "required": false },
+        "src": { "type": "string", "required": false }
+      },
+      "constraints": ["at_least_one_of: prompt, src"]
+    },
+    "audio-pronounce": {
+      "kind": "role",
+      "options": {
+        "ipa": { "type": "string", "required": false },
+        "ssml": { "type": "string", "required": false },
+        "alias": { "type": "string", "required": false }
+      },
+      "constraints": ["exactly_one_of: ipa, ssml, alias"]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+[project]
+name = "stitchwork-renderer-typst"
+version = "0.1.0"
+description = "Typst AST → Typst source → PDF renderer for Stitchwork."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+
+dependencies = [
+  "jsonschema>=4.23.0",
+  "click>=8.1.7",
+]
+
+[project.optional-dependencies]
+typst-binary = ["typst>=0.13.0"]
+ghostscript = []  # gs called via subprocess; no Python dep
+dev = ["pytest>=8.3.0", "ruff>=0.6.0"]
+
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/stitchwork_renderer_typst"]

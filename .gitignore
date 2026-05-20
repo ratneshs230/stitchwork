@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.uv/
+
+# Build outputs
+dist/
+build/
+out/
+*.tsbuildinfo
+*.egg-info/
+
+# Stitchwork artifacts
+.stitchwork-cache/
+stitchwork.lock.bak
+
+# Renderer outputs (per-book; kept out of repo)
+packages/sample-book/*/dist/
+packages/sample-book/*/.cache/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Python tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Test outputs
+coverage/
+htmlcov/
+.nyc_output/

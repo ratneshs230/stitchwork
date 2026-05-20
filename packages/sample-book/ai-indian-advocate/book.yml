@@ -1,0 +1,14 @@
+id: ai-indian-advocate
+title: AI for the Indian Advocate
+subtitle: A field handbook for litigation, drafting, and chamber practice in the age of generative AI
+authors:
+  - Stitchwork Pilot Author
+imprint: legal-press
+trim: 6x9
+locale: en-IN
+edition: 2026.1
+isbn:
+  print: 978-0-000000-00-0
+  ebook: 978-0-000000-00-1
+chapters:
+  - chapters/ch01.md

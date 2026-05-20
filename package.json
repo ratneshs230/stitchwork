@@ -1,0 +1,29 @@
+{
+  "name": "stitchwork",
+  "version": "0.1.0",
+  "private": true,
+  "description": "One source of truth → print, ebook, audiobook, web, A+ content.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build": "pnpm -r --filter=./packages/* build",
+    "test": "pnpm -r --filter=./packages/* test",
+    "test:parser": "pnpm --filter @stitchwork/parser-ts test",
+    "lint": "pnpm -r --filter=./packages/* lint",
+    "typecheck": "pnpm -r --filter=./packages/* typecheck",
+    "dev": "pnpm -r --parallel --filter=./packages/* dev",
+    "stitchwork": "pnpm --silent --filter @stitchwork/cli run start --",
+    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "tsx": "^4.19.0"
+  },
+  "packageManager": "pnpm@10.24.0"
+}
